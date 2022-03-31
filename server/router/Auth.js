@@ -1,28 +1,26 @@
- import express from "express";
-import Users from "../models/User.js";
-import CryptoJS from "crypto-js";
-import jwt from "jsonwebtoken";
+//  import express from "express";
+// import Users from "../models/User.js";
+// import CryptoJS from "crypto-js";
+// import jwt from "jsonwebtoken";
 
-const router = express.Router();
+// const router = express.Router();
 
-// const router = require("express").Router()
-// const Users = require("../models/User")
-// const CryptoJS = require("crypto-js")
-// const jwt = require("jsonwebtoken")
+const router = require("express").Router()
+const Users = require("../models/User")
+const CryptoJS = require("crypto-js")
+const jwt = require("jsonwebtoken")
 
 router.post("/registers", async (req, res)=> {
     const newUser = new Users({
         name: req.body.name,
         email: req.body.email,
         password: CryptoJS.AES.encrypt (
-            req.body.password,
-            process.env.PASS_SEC,
-            ).toString()
+            req.body.password, process.env.PASS_SEC,).toString(),
     })
 
 
     try {
-        const savedUser = await newUser.save();
+        const savedUser = await newUser.save()
         res.status(200).json(savedUser);
     } catch (err) {
         res.status(500).json({msg:"eror"});
@@ -69,5 +67,5 @@ router.post("/login", async (req, res)=>{
     }
 })
 
-// module.exports = router
-  export default router;
+ module.exports = router
+//   export default router;
