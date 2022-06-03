@@ -38,7 +38,7 @@ const ProductList = () => {
     <Container>       
        <Announcement/>
        <Navbar/>
-         <Title>
+         {/* <Title>
              Dresses
          </Title>
        <FilterContainer>
@@ -67,8 +67,8 @@ const ProductList = () => {
                      <Option>Price (desc)</Option>
                </Select>   
             </Filter>
-       </FilterContainer>
-       <Products/>
+       </FilterContainer>*/}
+       <Products/> 
        <Footer/>
     </Container>
   )

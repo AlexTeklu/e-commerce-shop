@@ -1,10 +1,22 @@
 
 ####
-POST http://localhost:5151/auth/register
+///user register
+POST http://localhost:5151/users
 Content-Type: application/json
 
 {
-    "username": "alex",
-    "email": "alex@yahoo.com",
-    "password": 1234
+    "username": "Alex",
+    "email": "alexs@gmail.com",
+    "password": "admin12"
+}
+
+####
+//user login
+POST http://localhost:5151/users/login
+Content-Type: application/json
+
+{
+    "username": "Admins",
+    "email": "admins@gmail.com",
+    
 }

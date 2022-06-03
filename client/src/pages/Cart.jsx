@@ -63,7 +63,7 @@ const ProductDetails = styled.div`
 
 const Image = styled.img`
     width: 200px;
-    height: 30vh;
+    height: 50vh;
     object-fit: ;
 `;
 

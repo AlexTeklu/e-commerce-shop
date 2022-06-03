@@ -1,10 +1,9 @@
-//  import mongoose from "mongoose";
- const mongoose = require("mongoose");
+ import mongoose from "mongoose";
+//  const mongoose = require("mongoose");
 const connectDatabase = async ()=>{
     try{
       const connection = await mongoose.connect(process.env.MONGO_URL, {
-         useUnifiedTopology: true,
-         useNewUrlParser: true,
+         
     })
     console.log("Mongo db connected")
     }catch (error){
@@ -13,5 +12,5 @@ const connectDatabase = async ()=>{
     }
 }
 
-//  export default connectDatabase;
-module.exports = connectDatabase
+  export default connectDatabase;
+// module.exports = connectDatabase
