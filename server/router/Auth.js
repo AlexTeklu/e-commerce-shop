@@ -70,3 +70,5 @@ if(user){
 authRouter.post('/', registerUser);
 authRouter.post('/login', userLogin);
 export default authRouter;
+
+

@@ -5,8 +5,8 @@ import authRouter from './router/Auth.js';
  import userRoute from './router/UserRouter.js';
 
 
-dotenv.config();
-connectDatabase();
+ dotenv.config();
+ connectDatabase();
 
 const app = express();
 app.use(express.json());
@@ -17,3 +17,4 @@ app.use('/users', userRoute);
 const PORT = process.env.PORT || 5151;
 
 app.listen(PORT, console.log(`server run in port ${PORT}`));
+
