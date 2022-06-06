@@ -1,9 +1,8 @@
 import express from 'express';
 import connectDatabase from './config/mongoDB.js';
-// import userRoute from './router/UserRoute.js';
-import authRoute from './router/Auth.js';
 import dotenv from 'dotenv';
-
+import authRouter from './router/Auth.js';
+ import userRoute from './router/UserRouter.js';
 
 
 dotenv.config();
@@ -11,9 +10,8 @@ connectDatabase();
 
 const app = express();
 app.use(express.json());
-app.use('/users', authRoute);
-app.use('/users', authRoute);
-// app.use('/users', userRoute);
+app.use('/users', authRouter);
+app.use('/users', userRoute);
 // app.use('/product', productRoute);
 
 const PORT = process.env.PORT || 5151;
