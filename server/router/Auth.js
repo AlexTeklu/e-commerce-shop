@@ -35,33 +35,32 @@ async function registerUser(req, res) {
 async function userLogin(req, res) {
 	try {
 		const user = await Users.findOne({ username: req.body.username });
-		
-if(user){
-	const hashedPassword = CryptoJS.AES.decrypt(user.password,process.env.PASS_SEC);
 
-	const {password, ...other} = user._doc
-	const definedPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+		if (user) {
+			const hashedPassword = CryptoJS.AES.decrypt(
+				user.password,
+				process.env.PASS_SEC
+			);
 
-	if(definedPassword === req.body.password){
-		const accesToken =jwt.sign(
-			{
-				id: user._doc,
-				isAdmin: user.isAdmin,
-			},
-			process.env.JWT_SEC,
-			{expiresIn: "3d"}
-		)
-		return res.status(200).json({...other, accesToken});
-	}else{
-		return res.status(401).json('incorrect password')
-	}
-		
-}else{
-	return res.status(401).json('user not found');
-}	
-		
+			const { password, ...other } = user._doc;
+			const definedPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-		
+			if (definedPassword === req.body.password) {
+				const accesToken = jwt.sign(
+					{
+						id: user._doc,
+						isAdmin: user.isAdmin,
+					},
+					process.env.JWT_SEC,
+					{ expiresIn: '3d' }
+				);
+				return res.status(200).json({ ...other, accesToken });
+			} else {
+				return res.status(401).json('incorrect password');
+			}
+		} else {
+			return res.status(401).json('user not found');
+		}
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -70,5 +69,3 @@ if(user){
 authRouter.post('/', registerUser);
 authRouter.post('/login', userLogin);
 export default authRouter;
-
-
