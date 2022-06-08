@@ -16,7 +16,7 @@
             next();
         });
     }else{
-        return res.status(401).json("your not authorized")
+        return res.status(401).json("your not authorized....")
     }
 
    
@@ -33,7 +33,7 @@ export const verifyTokenAndAuthorization = (req, res, next) => {
     })
 }
 
-export const verifyTokenAdmin = (req, res, next) =>{
+export const verifyTokenAdmin = (req, res, next) => {
     verifyToken(req, res, () => {
         if(req.user.isAdmin){
         next();

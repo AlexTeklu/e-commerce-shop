@@ -61,11 +61,11 @@ userRoute.get("/find/:id", verifyTokenAdmin, async(req, res)=>{
 userRoute.get("/", verifyTokenAdmin, async (req, res)=>{
     const query = req.query.new;
 	try {
-		const user = query ? await Users.find().sort({_id: -1}).limit(3) : await Usersfind();	
-		res.status(200).json(user)
+		const users = query ? await Users.find().sort({ _id: -1 }).limit(3) : await Users.find();	
+		res.status(200).json(users);
 	} catch (err) {
 		res.status(500).json(err);
-	}
+	};
 
 });
 

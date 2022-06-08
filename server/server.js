@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRouter from './router/Auth.js';
 import productRoutes from './router/ProductRoute.js';
 import userRoute from './router/UserRouter.js'
+import cartRoutes from './router/Cart.js';
 
 
  dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/users', authRouter);
 app.use('/users', userRoute);
 app.use('/products', productRoutes);
+app.use('/cart', cartRoutes)
 
 const PORT = process.env.PORT || 5151;
 

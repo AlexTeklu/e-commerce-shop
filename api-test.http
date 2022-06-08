@@ -5,18 +5,49 @@ POST http://localhost:5151/users
 Content-Type: application/json
 
 {
-    "username": "Alex",
-    "email": "alex@gmail.com",
+    "username": "Alexadmin",
+    "email": "admin@gmail.com",
     "password": "admin12"
 }
 
-####  
+####  login
 
 POST http://localhost:5151/users/login
 Content-Type: application/json
 
 {
-    "username": "Alex",
+    "username": "Alexadmin",
     "password": "admin12"
     
+}
+
+#### create product
+POST http://localhost:5151/products
+Content-Type: application/json
+
+{
+    "title": "Shirts",
+    "desc": "Hand made shirt",
+    "img": "https://m.media-amazon.com/images/I/A1ntnF3PJOL._CLa%7C2140%2C2000%7C81hEFeEHY5L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UL1500_.png",
+    "cat": ["shirt", "woman"],
+	"size": "M",
+	"color": "grey",
+    "price": 100
+}
+
+
+### GET ONE PRODUCT
+GET http://localhost:5151/products/629faef76a1292ad12f0bec2
+
+### GET All PRODCUTS
+GET http://localhost:5151/products?catagory=woman
+
+
+####
+POST http://localhost:5151/cart/addtocart
+Content-Type: application/json
+
+{
+    "userId": "629f79efad0355d6b5ccb305",
+    "productId": "629fb0c05a785c90d03a7634"
 }

@@ -3,6 +3,7 @@ import Product from '../models/product.js';
 const productRoutes = express.Router();
 
 // CREATE PRODUCT
+
 async function createProduct(req, res) {
     try {
         const newProduct = await Product.create({
@@ -42,17 +43,28 @@ async function getProduct(req, res) {
 // //TODO Add filter function
 
 async function getAllProducts(req, res) {
+    const qNew = req.query.new;
+    const qCatagory = req.query.category;
     try {
-        const products = await Product.find();
+        let products;
+        if(qNew){
+            products = await Product.find().sort({createdAt: -1}).limit(1);
+        }else if(qCatagory){
+            products = await Product.find({catagories: {
+                $in: [qCatagory]
+            }})
+        }else{
+            products = await Product.find();
+        }
+
         res.status(200).json(products);
-        console.log(products);
     } catch (err) {
         console.log('Something went wrong fetching all products', err.message);
         res.status(500).json(err);
     }
 }
 
-// const productRoutes = express.Router();
+
 // // Product routes to create
 
  productRoutes.post('/', createProduct);
