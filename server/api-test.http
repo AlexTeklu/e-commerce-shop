@@ -37,10 +37,10 @@ Content-Type: application/json
 
 
 ### GET ONE PRODUCT
-GET http://localhost:5151/products/629faef76a1292ad12f0bec2
+GET http://localhost:5151/products/62a27a8b8af3af17616e3a67
 
 ### GET All PRODCUTS
-GET http://localhost:5151/products?catagory=woman
+GET http://localhost:5151/products?new=true
 
 
 #### Creating Cart
