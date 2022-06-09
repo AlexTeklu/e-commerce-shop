@@ -27,16 +27,19 @@
       id: 1,
       img: "https://habeshashop.co.uk/media/image/585/ethiopian-eritrean-hand-made-dress-traditional-women-s-clothing.jpg",
       title: "SHIRT STYLE!",
+      cat:"women"
     },
     {
       id: 2,
       img: "https://i.pinimg.com/originals/52/cd/a6/52cda668db40399fafdc7f0d116aebe2.jpg",
       title: "LOUNGEWEAR LOVE",
+      cat:"coat"
     },
     {
       id: 3,
       img: "https://i0.wp.com/habeshakemise.com/wp-content/uploads/2019/06/amarech-ethiopian-traditional-dress-21-1.jpg?fit=768%2C1018&ssl=1",
       title: "LIGHT JACKETS",
+      cat:"jeans"
     },
   ];
 

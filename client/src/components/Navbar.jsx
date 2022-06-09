@@ -68,7 +68,12 @@ const MenuItem = styled.div`
     cursor: pointer;
     ${mobile({fontSize:"12px", mariginLeft: "10px"})}
 `
-
+const StyledLink = styled.div`
+font-size: 14px;
+margin-left: 25px;
+cursor: pointer;
+${mobile({fontSize:"12px", mariginLeft: "10px"})}
+`
 
 const navbar = () => {
   return (
@@ -87,8 +92,8 @@ const navbar = () => {
             </Center>
 
             <Right>
-                <MenuItem>Register</MenuItem>
-                <MenuItem>Sign In</MenuItem>
+                <StyledLink to="/login">Register</StyledLink>
+                <StyledLink to="/">Sign In</StyledLink>
                 <MenuItem>
                   <Badge badgeContent = {3} color="primary">
                   <ShoppingCartOutlined/>
