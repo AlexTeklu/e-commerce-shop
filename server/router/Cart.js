@@ -6,7 +6,7 @@ const cartRoutes = express.Router();
 
 // // CREATE CART
 
-cartRoutes.post("/", verifyToken, async(req, res) => {
+cartRoutes.post("/", async(req, res) => {
     const newCart = new Cart(req.body);
   
     try {
