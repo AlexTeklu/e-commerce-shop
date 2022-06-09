@@ -7,10 +7,12 @@ import {
     Phone,
     MailOutline,
   } from "@material-ui/icons";
+  import {mobile} from '../responsive';
 
 
 const Container = styled.div`
     display: flex;
+    ${mobile({ flexDirection: "column" })}
 `;
 const Left = styled.div`
     flex: 1;
@@ -43,6 +45,7 @@ margin-right: 20px;
 const Center = styled.div`
     flex: 1;
     padding: 30px;
+    ${mobile({ display: "none" })}
 `;
 const Title = styled.h2`
   margin-bottom: 30px;
