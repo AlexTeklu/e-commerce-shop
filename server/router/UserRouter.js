@@ -61,11 +61,12 @@ userRoute.get("/find/:id", verifyTokenAdmin, async(req, res)=>{
 userRoute.get("/", verifyTokenAdmin, async (req, res)=>{
     const query = req.query.new;
 	try {
-		const users = query ? await Users.find().sort({ _id: -1 }).limit(3) : await Users.find();	
+		const users = query ? await Users.find().sort({ _id: -1 }).limit(1) : await Users.find();	
 		res.status(200).json(users);
 	} catch (err) {
 		res.status(500).json(err);
 	};
+	 
 
 });
 
@@ -73,7 +74,7 @@ userRoute.get("/", verifyTokenAdmin, async (req, res)=>{
 
 userRoute.get("/stats", verifyTokenAdmin, async(req, res) => {
     const date = new Date();
-    const lastYear = new Date(date.setFullYear(datte.getFullYear() - 1));
+    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
     try {
         const data = await Users.aggregate([
@@ -90,7 +91,7 @@ userRoute.get("/stats", verifyTokenAdmin, async(req, res) => {
                 }
             }
         ]);
-        res.status().json(data);
+        res.status(200).json(data);
         
     } catch (err) {
         res.status(500).json(err)

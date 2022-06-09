@@ -2,7 +2,7 @@
 
 
 
- export const verifyToken = (req, res, next) =>{
+ export const verifyToken = (req, res, next) => {
     const authHeader = req.headers.token;
     if(authHeader){        
         const token = authHeader.split(" ")[1];
@@ -16,7 +16,7 @@
             next();
         });
     }else{
-        return res.status(401).json("your not authorized....")
+        return res.status(401).json("your not authorized");
     }
 
    

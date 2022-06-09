@@ -64,6 +64,16 @@ async function getAllProducts(req, res) {
     }
 }
 
+async function deleteProducts(req, res){
+   try {
+       const product = await Product.findByIdAndDelete(req.params.id);
+       res.status(200).json('product has been deleted...')
+       
+   } catch (err) {
+       res.status(500).json(err)
+   }
+}
+
 
 // // Product routes to create
 
@@ -75,6 +85,6 @@ async function getAllProducts(req, res) {
 
 // Additional and optional for admin panel
 
-// productRoutes.delete('/:id', deleteProducts);
+ productRoutes.delete('/:id', deleteProducts);
 
 export default productRoutes;
