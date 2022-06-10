@@ -5,12 +5,14 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import { Routes, Route } from 'react-router-dom';
+import Success from './pages/Success';
 
 const App = () => {
   return (
     <div className='App'>
       
        <Routes>
+       <Route path='/success' element ={<Success/>} />
          <Route path='/' element ={<Home/>} />
          <Route path="/login" element={<Login  />} />
          <Route path="/register" element={<Register />} />
