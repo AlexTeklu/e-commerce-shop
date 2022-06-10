@@ -55,8 +55,9 @@ const ProductList = () => {
       [e.target.name]: value,
     });
   };
-  console.log(filters);
+  
   return (
+    
     <Container>       
        <Announcement/>
        <Navbar/>
@@ -68,19 +69,19 @@ const ProductList = () => {
                <FilterText>Filter Products</FilterText>
                <Select name='color' onChange={handelFilters}>
                <Option disabled> Color</Option>
-                   <Option>White</Option>
-                   <Option>Red</Option>
-                   <Option>Blue</Option>
-                   <Option>Yellow</Option>
+                   <Option>white</Option>
+                   <Option>red</Option>
+                   <Option>blue</Option>
+                   <Option>yellow</Option>
                </Select>
                <Select name='size' onChange={handelFilters}>
                    <Option disabled>
                      Size 
                    </Option>
-                   <Option>XSmall</Option>
-                   <Option>Small</Option>
-                   <Option>Medium</Option>
-                   <Option>Large</Option>
+                   <Option>xsmall</Option>
+                   <Option>small</Option>
+                   <Option>medium</Option>
+                   <Option>large</Option>
                </Select>
             </Filter>
            <Filter>
