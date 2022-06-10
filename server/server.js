@@ -7,6 +7,7 @@ import userRoute from './router/UserRouter.js'
 import cartRoutes from './router/Cart.js';
 import orderRoutes from './router/Order.js';
 import cors from 'cors';
+import stripeRouter from './router/Strip.js';
 
 
  dotenv.config();
@@ -19,7 +20,8 @@ app.use('/users', authRouter);
 app.use('/users', userRoute);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes),
-app.use('/orders', orderRoutes)
+app.use('/orders', orderRoutes),
+app.use('/checkout', stripeRouter)
 
 const PORT = process.env.PORT || 5151;
 

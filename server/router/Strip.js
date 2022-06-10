@@ -1,7 +1,12 @@
-const stripeRouter = express.Router();
-const stripe = stripe(process.env.STRIPE_KEY);
 
-stripeRouter.post("/payment", (req, res) =>{
+import express from 'express';
+const stripeRouter = express.Router();
+import Stripe from 'stripe';
+
+const KEY = process.env.STRIPE_KEY
+const stripe = new Stripe(KEY);
+
+stripeRouter.post("/", (req, res) =>{
     stripe.charges.create({
         source: req.body.tokenId,
         amount: req.body.amount,
