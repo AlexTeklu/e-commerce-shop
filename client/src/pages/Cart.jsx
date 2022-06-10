@@ -2,7 +2,17 @@ import styled from 'styled-components';
 import Announcement from './../components/Announcement';
 import Navbar from './../components/Navbar';
 import Footer from './../components/Footer';
-import { Add, Remove } from '@material-ui/icons';
+import { Add, Remove, } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import StripeCehckout from 'react-stripe-checkout';
+import { useState, useEffect } from 'react';
+import {userRequest} from '../requestMethod';
+import { useNavigate } from "react-router-dom";
+
+const KEY = process.env.REACT_APP_STRIPE;
+
+
+
 
 
 const Container = styled.div`
@@ -63,8 +73,7 @@ const ProductDetails = styled.div`
 
 const Image = styled.img`
     width: 200px;
-    height: 50vh;
-    object-fit: ;
+    
 `;
 
 const Details = styled.div`
@@ -161,6 +170,28 @@ const Button = styled.button`
 
 
 const Cart = () => {
+    const cart = useSelector(state=>state.cart);
+    const [stripeToken, setStripeToken] = useState(null);
+    const navigate = useNavigate();
+
+
+    const onToken = (token)=> {
+      setStripeToken(token)
+    }
+    useEffect(() =>{
+        const makePayment = async ()=>{
+            try {
+                const res =await userRequest.post("/checkout/", {
+                tokenId: stripeToken,
+                amount: cart.total * 100,});
+                 navigate.push('/success', {data:res.data})
+                console.log(res);                
+            } catch(err) {
+                
+            }
+        }
+        stripeToken && makePayment();
+    }, [stripeToken, cart.total, navigate])
   return (
     <Container>
         <Navbar/>
@@ -177,62 +208,60 @@ const Cart = () => {
             </Top>
             <Bottom>
                 <Info>
-                    <Products>
+                    {cart.products.map((product) => (
+                        <Products>
                         <ProductDetails>
-                            <Image src="https://m.media-amazon.com/images/I/717bCN2YYTL._AC_SX679_.jpg"/>
+                            <Image src={product.img}/>
                             <Details>
-                                <ProductName><b>Product:</b>Hand-Made Dress </ProductName>
-                                <ProductId><b>ID:</b>291 </ProductId>
-                                <ProductColor color="darkblue"/>
-                                <ProductSize><b>Size:</b>40</ProductSize>
+                                <ProductName><b>Product:</b>{product.title} </ProductName>
+                                <ProductId><b>ID:</b>{product._id}</ProductId>
+                                <ProductColor color={product.color}/>
+                                <ProductSize><b>Size:</b>{product.size}</ProductSize>
                             </Details>
                         </ProductDetails>
                         <PriceDetail>
                             <ProductAmountContainer>
+                               <Remove/>                               
+                                <ProductAmount>{product.quantity}</ProductAmount>
                                 <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
                             </ProductAmountContainer>
-                            <ProductPrice>699kr</ProductPrice>
+                            <ProductPrice>SEK{product.price * product.quantity}</ProductPrice>
                         </PriceDetail>
-                    </Products>
+                        </Products>
+                    ))}
+                   
 
                 <Hr/>
-                    <Products>
-                        <ProductDetails>
-                            <Image src="https://i.etsystatic.com/32814857/r/il/43f4e7/3590319175/il_1588xN.3590319175_1ul6.jpg"/>
-                            <Details>
-                                <ProductName><b>Product:</b>Hand-Made T-shirt </ProductName>
-                                <ProductId><b>ID:</b>292 </ProductId>
-                                <ProductColor color="gray"/>
-                                <ProductSize><b>Size:</b>L</ProductSize>
-                            </Details>
-                        </ProductDetails>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                            <ProductPrice>399kr</ProductPrice>
-                        </PriceDetail>
-                    </Products>
+                   
                 </Info>
                 <Summary>
                     <SummaryTitle>Order-Summary</SummaryTitle>
                     <SummaryItem>
                         <SummaryItemText>SubTotal</SummaryItemText>
-                        <SummaryItemPrice>429kr</SummaryItemPrice>
+                        <SummaryItemPrice>SEK {cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <SummaryItem>
                         <SummaryItemText>Discount</SummaryItemText>
-                        <SummaryItemPrice>30kr</SummaryItemPrice>
+                        <SummaryItemPrice>SEK {cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <SummaryItem>
                         <SummaryItemText type="total">Total</SummaryItemText>
-                        <SummaryItemPrice>399kr</SummaryItemPrice>
+                        <SummaryItemPrice>SEK {cart.total}</SummaryItemPrice>
                     </SummaryItem>
+                    <StripeCehckout
+                     name= "Alex"
+                     billingAddress
+                     shippingAddress
+                     description={`Your total is SEK${cart.total}`}
+                     amount={cart.total*100}
+                     token={onToken}
+                     stripeKey={KEY}
+                     >
+                       
                     <Button>CheckOut</Button>
+
+                    </StripeCehckout>
+                    
                 </Summary>
             </Bottom>
         </Wrapper>

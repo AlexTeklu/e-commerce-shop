@@ -6,6 +6,8 @@ import { Add, Remove } from '@material-ui/icons';
 import { useLocation } from 'react-router';
 import { useState, useEffect } from 'react';
 import { publicRequest } from '../requestMethod';
+import { addProduct } from '../Redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 
 const Container =styled.div`
@@ -112,6 +114,9 @@ const SingleProduct = () => {
    const id = location.pathname.split("/")[2];
    const [product, setProduct]= useState({});
    const [quantity, setQuantitiy]= useState(0);
+   const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+   const dispatch = useDispatch()
 
 
      useEffect(() =>{
@@ -138,8 +143,8 @@ const SingleProduct = () => {
 
 
      const handleClick = () =>{
-      
-     }
+      dispatch(addProduct({...product, quantity, color, size}));
+     };
 
   return (
     <Container>
