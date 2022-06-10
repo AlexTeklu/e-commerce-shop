@@ -3,6 +3,7 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react'
 import styled from 'styled-components';
 import {mobile} from '../responsive';
+import { useSelector } from 'react-redux';
 
 
 
@@ -75,7 +76,10 @@ cursor: pointer;
 ${mobile({fontSize:"12px", mariginLeft: "10px"})}
 `
 
-const navbar = () => {
+const Navbar = () => {
+    const quantity = useSelector(state => state.cart.quantity)
+    console.log(quantity);
+    
   return (
     <Container>
         <Wrapper> 
@@ -95,7 +99,7 @@ const navbar = () => {
                 <StyledLink to="/login">Register</StyledLink>
                 <StyledLink to="/">Sign In</StyledLink>
                 <MenuItem>
-                  <Badge badgeContent = {3} color="primary">
+                  <Badge badgeContent = {quantity} color="primary">
                   <ShoppingCartOutlined/>
                   </Badge>
                 </MenuItem>
@@ -105,4 +109,4 @@ const navbar = () => {
   )
 }
 
-export default navbar
+export default Navbar;
