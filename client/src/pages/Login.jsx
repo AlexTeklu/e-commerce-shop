@@ -1,5 +1,6 @@
 import styled from 'styled-components'; 
 import {Link} from 'react-router-dom';
+import { mobile } from "../responsive";
 
 
 const Container =styled.div`
@@ -20,12 +21,14 @@ const Container =styled.div`
 const Wrapper =styled.div`
    width: 25%;
    padding: 20px;
-   background-color: white;
+   background-color: #333;
+   ${mobile({ width: "75%" })}
 `;
 
 const Title =styled.h2`
    font-size: 24px;
    font-weight: 300;
+   color: #fff;
 `;
 
 const Form =styled.form`
@@ -54,6 +57,7 @@ const StyledLinks =styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
+  color: #fff;
   cursor: pointer;
   `;
 
