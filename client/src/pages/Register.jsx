@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
    width: 40%;
    padding: 20px;
-   background-color: white;
+   background-color: #fff;
+   ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h2`
@@ -42,9 +44,10 @@ const Button = styled.button`
    border: none;
    padding: 15px 20px;
    background-color: teal;
-   color: white;
+   color: #ffff;
    cursor: pointer;
    align-item: center;
+   ${mobile({ width: "100%" })}
 `;
 
 const Register = () => {

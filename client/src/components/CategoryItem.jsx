@@ -33,8 +33,8 @@ justify-content: center;
  const Title = styled.h1`
  color: blue;
  margin-bottom: 20px;
- font-weight: 900;
- color: #cd9452;
+ font-weight: 600;
+ color: #333;
  `;
 const Button = styled.button`
 border:none;
