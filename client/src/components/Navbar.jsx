@@ -93,12 +93,20 @@ const Navbar = () => {
             </Left>
             
             <Center>
+                <Link to="/">
                 <Logo>Alex.</Logo>
+                </Link>
+                
             </Center>
 
             <Right>
-                <StyledLink to="/login">Register</StyledLink>
-                <StyledLink to="/">Sign In</StyledLink>
+                <Link to="/register">
+                <StyledLink>Register</StyledLink>
+                </Link>
+                <Link to="/login">
+                <StyledLink>Sign In</StyledLink>
+                </Link>
+                
                 <Link to="/cart">
                 <MenuItem>
                   <Badge badgeContent = {quantity} color="primary">

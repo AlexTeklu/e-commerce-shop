@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'; 
+import {Link} from 'react-router-dom';
 
 
 const Container =styled.div`
@@ -49,7 +50,7 @@ const Button =styled.button`
   margin-bottom: 10px; 
 `;
 
-const Link =styled.a`
+const StyledLinks =styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
@@ -67,8 +68,14 @@ const Login = () => {
                 
                 <Input placeholder="email"/>
                 <Input placeholder="password"/>
+                <Link to="/">
                 <Button>Sing-In</Button>
-                <Link>Create Account</Link>
+                </Link>
+                
+                <Link to="/register">
+                <StyledLinks >Create Account</StyledLinks>
+                </Link>
+               
 
             </Form>
         </Wrapper>

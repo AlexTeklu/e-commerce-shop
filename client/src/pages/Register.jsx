@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -58,7 +59,10 @@ const Register = () => {
                 <Input placeholder="email"/>
                 <Input placeholder="password"/>
                 <Input placeholder="re-password"/>
+                <Link to="/login">
                 <Button>Create</Button>
+                </Link>
+                
 
             </Form>
         </Wrapper>
