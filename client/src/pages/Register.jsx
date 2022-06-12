@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { mobile } from "../responsive";
+// import { useState } from 'react';
+// import axios from 'axios';
 
 const Container = styled.div`
   display: flex;
@@ -40,28 +42,31 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-   width: 40%;
-   border: none;
-   padding: 15px 20px;
-   background-color: teal;
-   color: #ffff;
-   cursor: pointer;
-   align-item: center;
-   ${mobile({ width: "100%" })}
+width: 40%;
+border: none;
+padding: 15px 20px;
+background-color: teal;
+color: white;
+cursor: pointer;
+margin-bottom: 10px; 
 `;
 
 const Register = () => {
+  
+
+
   return (
     <Container>
         <Wrapper>
             <Title>Create Account</Title>
             <Form>
-                <Input placeholder="name"/>
-                <Input placeholder="last name"/>
-                <Input placeholder="username"/>
-                <Input placeholder="email"/>
-                <Input placeholder="password"/>
-                <Input placeholder="re-password"/>
+            <Input placeholder="name" />
+            <Input placeholder="last name" />
+            <Input placeholder="username" />
+            <Input placeholder="email" />
+            <Input placeholder="password" />
+            <Input placeholder="confirm password" />
+           
                 <Link to="/login">
                 <Button>Create</Button>
                 </Link>
