@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { mobile } from "../responsive";
 
 
+
 const Container =styled.div`
    width: 100vw;
    height: 100vh;
@@ -16,6 +17,7 @@ const Container =styled.div`
    display: flex;
    align-items: center;
    justify-content: center;
+   flex-direction: column;
 `;
 
 const Wrapper =styled.div`
@@ -63,8 +65,10 @@ const StyledLinks =styled.a`
 
 const Login = () => {
   return (
-    <Container>
-         <Container>
+   
+   
+      <Container>
+         
         <Wrapper>
             <Title>Sign-In</Title>
             <Form>
@@ -83,7 +87,8 @@ const Login = () => {
 
             </Form>
         </Wrapper>
-    </Container>
+    
+        
     </Container>
   )
 }
