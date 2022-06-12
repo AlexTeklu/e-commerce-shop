@@ -1,6 +1,9 @@
 import styled from 'styled-components'; 
 import {Link} from 'react-router-dom';
 import { mobile } from "../responsive";
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+
 
 
 
@@ -64,6 +67,41 @@ const StyledLinks =styled.a`
   `;
 
 const Login = () => {
+  const [username, setUsername] = useState(""); 
+ 
+const handleSubmit = async(e) =>{
+    e.preventDefault();
+    console.log('Clicked sign in');
+
+    const { username, password } = document.forms[0];
+    console.log('username: ', username.value);
+    console.log('password: ', password.value);
+     
+    try {
+      const loginUser = await fetch("http//:localhost:5151/login", {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+        }),
+      });
+         // On a succesful login attempt, update state and redirect to homepage
+         if (loginUser.status === 200) {
+          const json = await loginUser.json();
+          console.log('user logged in');
+          setUsername(json);
+          Navigate('/');
+          console.log(username);
+      } else {
+          console.log('not logged in');
+      }
+      
+    } catch (err) {
+      
+    }
+  }
+  
   return (
    
    
@@ -71,14 +109,21 @@ const Login = () => {
          
         <Wrapper>
             <Title>Sign-In</Title>
-            <Form>
+            <Form onSubmit={handleSubmit}>               
                 
+                <Input  type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Username"  
+                 />
+                <Input type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"             
+                />
                 
-                <Input placeholder="email"/>
-                <Input placeholder="password"/>
-                <Link to="/">
                 <Button>Sing-In</Button>
-                </Link>
+                
                 
                 <Link to="/register">
                 <StyledLinks >Create Account</StyledLinks>
