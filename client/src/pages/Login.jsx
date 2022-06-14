@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import { mobile } from "../responsive";
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../Redux/ApiCalls";
+
 
 
 
@@ -56,7 +58,12 @@ const Button =styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px; 
+  &:disabled{
+    color: green;
+    cursor: not-allowed;
+  }
 `;
+const Error = styled.span``
 
 const StyledLinks =styled.a`
   margin: 5px 0px;
@@ -68,40 +75,16 @@ const StyledLinks =styled.a`
 
 const Login = () => {
   const [username, setUsername] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const dispatch = useDispatch();
+  const {isFetching, error} = useSelector((state) => state.user);
  
-const handleSubmit = async(e) =>{
-    e.preventDefault();
-    console.log('Clicked sign in');
-
-    const { username, password } = document.forms[0];
-    console.log('username: ', username.value);
-    console.log('password: ', password.value);
-     
-    try {
-      const loginUser = await fetch("http//:localhost:5151/login", {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({
-            username: username.value,
-            password: password.value,
-        }),
-      });
-         // On a succesful login attempt, update state and redirect to homepage
-         if (loginUser.status === 200) {
-          const json = await loginUser.json();
-          console.log('user logged in');
-          setUsername(json);
-          Navigate('/');
-          console.log(username);
-      } else {
-          console.log('not logged in');
+ 
+      const handleClick = (e) =>{       
+        e.preventDefault();
+        login(dispatch, { username, password });
       }
-      
-    } catch (err) {
-      
-    }
-  }
-  
+        
   return (
    
    
@@ -109,20 +92,19 @@ const handleSubmit = async(e) =>{
          
         <Wrapper>
             <Title>Sign-In</Title>
-            <Form onSubmit={handleSubmit}>               
+            <Form>
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
                 
-                <Input  type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Username"  
-                 />
-                <Input type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Password"             
-                />
-                
-                <Button>Sing-In</Button>
+                <Button onClick={handleClick} disabled={isFetching}>Sing-In</Button>
+               {error && <Error>Something went worng</Error>}
                 
                 
                 <Link to="/register">

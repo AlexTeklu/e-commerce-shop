@@ -43,24 +43,21 @@ background-color: white;
 color: #cd9452;
 cursor: pointer;
 font-weight: 900;
-`;
 
-const CategoryItem = ({item}) => {
+
+`;
+const CategoryItem = ({ item }) => {
   return (
-    <Container> 
+    <Container>
       <Link to={`/products/${item.cat}`}>
-      <Image src={item.img}/>
-       <Info>
-         <Title>{item.title}</Title>
-         <Button >Buy Now</Button>
-       </Info>
-      
+      <Image src={item.img} />
+      <Info>
+        <Title>{item.title}</Title>
+        <Button>SHOP NOW</Button>
+      </Info>
       </Link>
-      
-      
-      
     </Container>
-  )
-}
+  );
+};
 
 export default CategoryItem

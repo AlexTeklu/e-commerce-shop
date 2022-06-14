@@ -92,7 +92,7 @@ const slider = () => {
             <InfoContainer>
                 <Title>Best Clothing</Title>
                 <Desc> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, culpa!</Desc>
-                <Link to="/login">
+                <Link to="/">
                 <Button>BUY NOW</Button>
                 </Link>
                 
